@@ -1,0 +1,21 @@
+name: test-nanodet
+
+on:
+    pull_request:
+        branches:
+            - master
+        paths:
+            - 'notebooks/nanodet-ppe/*'
+
+jobs:
+    test: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Build container
+              run: |
+                cd ./notebooks/nanodet-ppe
+                docker build -t test-image .
+            - name: Run test in container
+              run: |
+                docker run --rm test-image

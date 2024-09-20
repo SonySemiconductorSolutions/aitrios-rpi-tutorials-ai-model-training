@@ -1,0 +1,13 @@
+.env
+dataset
+local_mct
+nanodet
+workspace
+tmp
+
+.ipynb_checkpoints
+nanodet_model_best-removed-aux.pth
+annotated.jpg
+nanodet-quant-ppe.keras
+
+**/Makefile_local
