@@ -16,11 +16,11 @@ Please read the Site Policy of GitHub and understand the usage conditions.
 ### [Training mobilenetV2 classifier](./notebooks/mobilenet-rps/custom_mobilenet.ipynb)
 * [Notebook file](notebooks/mobilenet-rps/custom_mobilenet.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SonySemiconductorSolutions/aitrios-rpi-tutorials-ai-model-training/blob/main/notebooks/mobilenet-rps/custom_mobilenet.ipynb)
 
-### [Training nanodet object detector](./notebooks/nanodet-ppe/custom_nanodet.ipynb)
+### [Training NanoDet object detector](./notebooks/nanodet-ppe/custom_nanodet.ipynb)
 * [Notebook file](./notebooks/nanodet-ppe/custom_nanodet.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SonySemiconductorSolutions/aitrios-rpi-tutorials-ai-model-training/blob/main/notebooks/nanodet-ppe/custom_nanodet.ipynb)
 
 ## Running tutorials on Docker
-1. Ensure you have Docker installed on your system. You can dowload and install it from [docker.com](https://www.docker.com/).
+1. Ensure you have Docker installed on your system. You can download and install it from [docker.com](https://www.docker.com/).
 
 2. Clone this repository
 ```
