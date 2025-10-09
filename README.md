@@ -12,6 +12,7 @@ To run the Jupyter notebooks, we recommend using the Google Colab links provided
 Please read the Site Policy of GitHub and understand the usage conditions.
 
 ## Running tutorials on Colab
+**Observe**: As of July 2025, Google Colab has been updated and is using Python 3.12. In order to run the following tutorials one **must change the Runtime from Latest to 2025.07**. This will use the previous version of the virtual machine with Python 3.11. For instructions see [blogpost](https://developers.googleblog.com/en/google-colab-adds-more-back-to-school-improvements).
 
 ### [Training mobilenetV2 classifier](./notebooks/mobilenet-rps/custom_mobilenet.ipynb)
 * [Notebook file](notebooks/mobilenet-rps/custom_mobilenet.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SonySemiconductorSolutions/aitrios-rpi-tutorials-ai-model-training/blob/main/notebooks/mobilenet-rps/custom_mobilenet.ipynb)
