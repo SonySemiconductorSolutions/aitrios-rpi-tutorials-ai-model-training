@@ -9,5 +9,8 @@ To use Roboflow open source datasets, you need a Roboflow [public account](https
 ## Training and quantization
 [custom_nanodet.ipynb](./custom_nanodet.ipynb)
 
+## Running tutorials on Docker
+Quantized and converted models created inside the Docker container will appear in the shared folder mapped to `$HOST_WORKDIR` (by default `tutorial/`). See the `Makefile` for customization.
+
 ## Tests
 See Makefile.
