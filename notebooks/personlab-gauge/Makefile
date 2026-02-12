@@ -1,8 +1,8 @@
 TESTDIR := /home/newuser/tutorial
-SRC := custom_mobilenet.ipynb
-CHECK_FILE := $(TESTDIR)/models/mobilenet-quant-rps.keras
+SRC := custom_personlab.ipynb
+CHECK_FILE := aitrios-rpi-training-samples/samples/model/posenet_digitalgauge/posenet_digitalgauge_quantized.keras
 REPORT_FILE_NAME := executed_notebook.ipynb
-REPORT_FILE_PATH := $(TESTDIR)/$(REPORT_FILE_NAME)
+REPORT_FILE_PATH := $(REPORT_FILE_NAME)
 IP_ADDR := 127.0.0.1
 PORT := 8888
 ALLOW_ROOT :=
@@ -13,7 +13,7 @@ HOST_WORKDIR ?= $(CURDIR)/tutorial
 SHELL := /bin/bash
 
 docker-image:
-	# NEW: pass host UID/GID so files created in the mount are owned by you
+	# Build with your host UID/GID so mounted files keep correct ownership
 	docker build \
 		--build-arg NB_UID=$$(id -u) \
 		--build-arg NB_GID=$$(id -g) \
@@ -24,16 +24,19 @@ prepare-host-dir:
 
 # Use to run notebook manually (with persistence)
 jupyter-local: docker-container-remove docker-image prepare-host-dir
-	docker run -it -d --name test-container --shm-size=1g \
+	docker run -it -d --name test-container \
+		--gpus all --shm-size=2g \
 		-p $(IP_ADDR):$(PORT):$(PORT) \
-		-v "$(HOST_WORKDIR):$(TESTDIR)" \
+		-v $(HOST_WORKDIR):$(TESTDIR) \
 		test-image bash
-	docker exec -it test-container bash -lc "cd '$(TESTDIR)' && jupyter notebook --ip=0.0.0.0 $(ALLOW_ROOT) --no-browser --NotebookApp.token=''"
+	# Start Jupyter from the work dir so new files land in the mounted folder
+	docker exec -it test-container bash -lc "jupyter notebook --ip=0.0.0.0 $(ALLOW_ROOT) --no-browser --NotebookApp.token=''"
 
 # This is the test to run using github actions
 test-github:
 	@echo "Running tests..."
 	jupyter-nbconvert --to notebook --execute $(SRC) --output $(REPORT_FILE_NAME)
+	# If file absent then make will produce error
 	[ -f $(CHECK_FILE) ]
 	[ -f $(REPORT_FILE_PATH) ]
 	@echo Tests OK
